@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -41,45 +42,31 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column {
-        Surface(
-            color = MaterialTheme.colorScheme.primary,
-            shape = MaterialTheme.shapes.medium,
-        ) {
-            Text(
-                text = "Hello $name!",
-                modifier = modifier.padding(20.dp)
-            )
-            Text(
-                text = "Hello $name!",
-                modifier = modifier.padding(20.dp)
-            )
-        }
-        Surface(
-            color = MaterialTheme.colorScheme.primary,
-            shape = MaterialTheme.shapes.medium,
-        ) {
-            Text(
-                text = "Hello $name!",
-                modifier = modifier.padding(20.dp)
-            )
+fun MyApp(
+    modifier: Modifier = Modifier,
+    names: List<String> = listOf("World", "Compose")
+) {
+    Column(modifier = modifier.padding(vertical = 4.dp)) {
+        for (name in names) {
+            Greeting(name = name)
         }
     }
-
 }
 
 @Composable
-fun MyApp(modifier: Modifier = Modifier) {
+fun Greeting(name: String, modifier: Modifier = Modifier) {
     Surface(
-        modifier = modifier,
-        color = MaterialTheme.colorScheme.background
+        color = MaterialTheme.colorScheme.primary,
+        modifier = modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
-        Greeting("Android")
+        Column(modifier = Modifier.fillMaxWidth().padding(24.dp)) {
+            Text(text = "Hello ")
+            Text(text = name)
+        }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview(showBackground = true, showSystemUi = true, widthDp = 320)
 @Composable
 fun GreetingPreview() {
     MyApplicationTheme {
