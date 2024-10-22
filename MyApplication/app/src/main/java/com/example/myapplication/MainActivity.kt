@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -41,15 +42,31 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Surface(
-        color = MaterialTheme.colorScheme.primary,
-        shape = MaterialTheme.shapes.medium,
+    Column {
+        Surface(
+            color = MaterialTheme.colorScheme.primary,
+            shape = MaterialTheme.shapes.medium,
         ) {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier.padding(20.dp)
-        )
+            Text(
+                text = "Hello $name!",
+                modifier = modifier.padding(20.dp)
+            )
+            Text(
+                text = "Hello $name!",
+                modifier = modifier.padding(20.dp)
+            )
+        }
+        Surface(
+            color = MaterialTheme.colorScheme.primary,
+            shape = MaterialTheme.shapes.medium,
+        ) {
+            Text(
+                text = "Hello $name!",
+                modifier = modifier.padding(20.dp)
+            )
+        }
     }
+
 }
 
 @Composable
