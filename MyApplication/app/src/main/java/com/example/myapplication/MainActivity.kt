@@ -41,6 +41,21 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp(
     modifier: Modifier = Modifier,
+) {
+    var shouldShowOnboarding by remember { mutableStateOf(true) }
+
+    Surface(modifier) {
+        if (shouldShowOnboarding) {
+            OnboardingScreen(onContinueClicked = { shouldShowOnboarding = false })
+        } else {
+            Greetings()
+        }
+    }
+}
+
+@Composable
+private fun Greetings(
+    modifier: Modifier = Modifier,
     names: List<String> = listOf("World", "Compose")
 ) {
     Column(modifier = modifier.padding(vertical = 4.dp)) {
@@ -48,8 +63,8 @@ fun MyApp(
             Greeting(name = name)
         }
     }
-//    OnboardingScreen()
 }
+
 
 @Composable
 fun Greeting(name: String) {
@@ -80,18 +95,11 @@ fun Greeting(name: String) {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun GreetingPreview() {
-    MyApplicationTheme {
-        MyApp()
-    }
-}
-
-@Composable
-fun OnboardingScreen(modifier: Modifier = Modifier) {
-    var shouldShowOnboarding by remember { mutableStateOf(true) }
-
+fun OnboardingScreen(
+    onContinueClicked: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -99,18 +107,29 @@ fun OnboardingScreen(modifier: Modifier = Modifier) {
     ) {
         Text("Welcome to the Basics Codelab!")
         Button(
-            modifier = Modifier.padding(vertical = 24.dp),
-            onClick = { shouldShowOnboarding = false }
+            modifier = Modifier
+                .padding(vertical = 24.dp),
+            onClick = onContinueClicked
         ) {
             Text("Continue")
         }
     }
+
 }
 
-@Preview(showBackground = true, widthDp = 320, heightDp = 320)
+
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun OnboardingPreview() {
+fun GreetingsPreview() {
     MyApplicationTheme {
-        OnboardingScreen()
+        Greeting("World")
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun GreetingPreview() {
+    MyApplicationTheme {
+        MyApp()
     }
 }
