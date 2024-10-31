@@ -129,7 +129,7 @@ fun OnboardingScreen(
 @Composable
 fun GreetingsPreview() {
     MyApplicationTheme {
-        Greeting("World")
+        Greetings()
     }
 }
 
