@@ -96,7 +96,7 @@ private fun Greeting(name: String, modifier: Modifier = Modifier) {
         Row(modifier = Modifier.padding(24.dp)) {
             Column(modifier = Modifier
                 .weight(1f)
-                .padding(bottom = extraPadding.coerceAtLeast(0.dp))
+                .padding(bottom = extraPadding.coerceAtLeast(0.dp)) //これをしないとバネの動きでマイナスになってしまう。
             ) {
                 Text(text = "Hello, ")
                 Text(text = name)
