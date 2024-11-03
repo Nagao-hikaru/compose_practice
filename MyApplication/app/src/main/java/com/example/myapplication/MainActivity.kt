@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         println("ながお")
         setContent {
-            MyApplicationTheme(darkTheme = true) {
+            MyApplicationTheme(dynamicColor = false) {
                 MyApp()
             }
         }
